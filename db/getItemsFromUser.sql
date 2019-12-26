@@ -1,3 +1,3 @@
 SELECT *
-FROM wel_items
+FROM craig_items
 WHERE id= $1

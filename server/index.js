@@ -5,16 +5,15 @@ const { json } = require("body-parser");
 const massive = require("massive");
 const routes = require("./routes/routes");
 const session = require("express-session");
-const passport = require('passport');
+const passport = require("passport");
 const {
   getUser,
   strat,
   logout
 } = require(`${__dirname}/controllers/itemCtrl/authCtrl/authCtrl`);
 
-
 const app = express();
-const port = process.env.PORT ||3001;
+const port = process.env.PORT || 3001;
 
 app.use(cors());
 app.use(json());
@@ -31,7 +30,6 @@ app.use(
   })
 );
 
-
 //functions for passport
 app.use(passport.initialize());
 app.use(passport.session());
@@ -44,7 +42,12 @@ passport.serializeUser((profile, done) => {
   db.getUserByAuthid(profile.id).then(user => {
     // console.log(profile.name);
     if (!user[0]) {
-      db.addUserByAuthid(profile.id, profile.picture, profile.displayName)
+      db.addUserByAuthid(
+        profile.id,
+        profile.name.givenName,
+        profile.name.familyName,
+        profile.picture
+      )
         .then(response => {
           return done(null, response[0]);
         })

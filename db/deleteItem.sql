@@ -1,2 +1,2 @@
-DELETE FROM wel_items WHERE ID = ($1)
+DELETE FROM craig_items WHERE ID = ($1)
 RETURNING *

@@ -1,8 +1,8 @@
 module.exports = {
   newItem(req, res) {
     const db = req.app.get("db");
-    const { name, desc } = req.body;
-    db.addItem([name, desc])
+    const { userId, name, descr, category } = req.body;
+    db.addItem([userId, name, descr, category])
       .then(response => {
         res.status(200).send(response);
       })

@@ -1,2 +1,2 @@
 SELECT *
-FROM wel_items
+FROM craig_items
